@@ -1,13 +1,6 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "metadata": {
-    "_generator": {
-      "name": "bicep",
-      "version": "0.4.1272.37030",
-      "templateHash": "10055245465822254163"
-    }
-  },
   "parameters": {
     "principalId": {
       "type": "string"
@@ -39,7 +32,7 @@
     {
       "type": "Microsoft.Authorization/roleAssignments",
       "apiVersion": "2020-10-01-preview",
-      "name": "ARGOS Cloud Security - IAM role",
+      "name": "[guid(resourceGroup().id)]",
       "properties": {
         "principalId": "[parameters('principalId')]",
         "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', guid(resourceGroup().id))]",

@@ -22,7 +22,7 @@ resource iamrole 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' = 
 }
 
 resource iamroleAssignment 'Microsoft.Authorization/roleAssignments@2020-10-01-preview' = {
-  name: 'ARGOS Cloud Security - IAM role'
+  name: guid(resourceGroup().id)
   properties: {
     principalId: principalId
     roleDefinitionId: iamrole.id
