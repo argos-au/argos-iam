@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.4.1272.37030",
-      "templateHash": "9320924093526461026"
+      "templateHash": "13755302285084278948"
     }
   },
   "parameters": {
@@ -17,12 +17,12 @@
     {
       "type": "Microsoft.Authorization/roleDefinitions",
       "apiVersion": "2018-01-01-preview",
-      "name": "[guid(resourceGroup().id)]",
+      "name": "[guid(subscription().subscriptionId)]",
       "properties": {
         "roleName": "ARGOS Cloud Security - IAM role",
         "description": "This role allows ARGOS Cloud Security to perform all the READ actions it requires to monitor the configuration of your cloud subscriptions.",
         "assignableScopes": [
-          "[resourceGroup().id]"
+          "[subscription().subscriptionId]"
         ],
         "permissions": [
           {
@@ -40,14 +40,14 @@
     {
       "type": "Microsoft.Authorization/roleAssignments",
       "apiVersion": "2020-08-01-preview",
-      "name": "[guid(resourceGroup().id)]",
+      "name": "[guid(subscription().subscriptionId)]",
       "properties": {
         "principalId": "[parameters('principalId')]",
-        "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', guid(resourceGroup().id))]",
+        "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', guid(subscription().subscriptionId))]",
         "principalType": "ServicePrincipal"
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Authorization/roleDefinitions', guid(resourceGroup().id))]"
+        "[resourceId('Microsoft.Authorization/roleDefinitions', guid(subscription().subscriptionId))]"
       ]
     }
   ]
