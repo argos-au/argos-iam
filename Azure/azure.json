@@ -1,6 +1,13 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.4.1272.37030",
+      "templateHash": "15714969619764976324"
+    }
+  },
   "parameters": {
     "principalId": {
       "type": "string"
@@ -10,7 +17,7 @@
     {
       "type": "Microsoft.Authorization/roleDefinitions",
       "apiVersion": "2018-01-01-preview",
-      "name": "[guid(resourceGroup().id)]",
+      "name": "[guid(concat(resourceGroup().id, resourceGroup().location))]",
       "properties": {
         "description": "This role allows ARGOS Cloud Security to perform all the READ actions it requires to monitor the configuration of your cloud subscriptions.",
         "assignableScopes": [
@@ -35,11 +42,11 @@
       "name": "[guid(resourceGroup().id)]",
       "properties": {
         "principalId": "[parameters('principalId')]",
-        "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', guid(resourceGroup().id))]",
+        "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', guid(concat(resourceGroup().id, resourceGroup().location)))]",
         "principalType": "ServicePrincipal"
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Authorization/roleDefinitions', guid(resourceGroup().id))]"
+        "[resourceId('Microsoft.Authorization/roleDefinitions', guid(concat(resourceGroup().id, resourceGroup().location)))]"
       ]
     }
   ]

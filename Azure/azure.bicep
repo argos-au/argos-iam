@@ -1,7 +1,7 @@
 param principalId string
 
 resource iamrole 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' = {
-  name: guid(resourceGroup().id)
+  name: guid(concat(resourceGroup().id, resourceGroup().location))
   properties: {
     description: 'This role allows ARGOS Cloud Security to perform all the READ actions it requires to monitor the configuration of your cloud subscriptions.'
     assignableScopes: [
