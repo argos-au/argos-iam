@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.4.1272.37030",
-      "templateHash": "7360955655575755830"
+      "templateHash": "9320924093526461026"
     }
   },
   "parameters": {
@@ -39,7 +39,7 @@
     },
     {
       "type": "Microsoft.Authorization/roleAssignments",
-      "apiVersion": "2020-10-01-preview",
+      "apiVersion": "2020-08-01-preview",
       "name": "[guid(resourceGroup().id)]",
       "properties": {
         "principalId": "[parameters('principalId')]",

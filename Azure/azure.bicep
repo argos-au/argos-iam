@@ -22,7 +22,7 @@ resource iamrole 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' = 
   }
 }
 
-resource iamroleAssignment 'Microsoft.Authorization/roleAssignments@2020-10-01-preview' = {
+resource iamroleAssignment 'Microsoft.Authorization/roleAssignments@2020-08-01-preview' = {
   name: guid(resourceGroup().id)
   properties: {
     principalId: principalId
