@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/managementGroupDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.4.1272.37030",
+      "templateHash": "4781702846337918379"
+    }
+  },
+  "parameters": {
+    "principalId": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Authorization/roleDefinitions",
+      "apiVersion": "2018-01-01-preview",
+      "name": "[guid(managementGroup().id)]",
+      "properties": {
+        "roleName": "ARGOS Cloud Security - IAM role",
+        "description": "This role allows ARGOS Cloud Security to perform all the READ actions it requires to monitor the configuration of your cloud subscriptions.",
+        "assignableScopes": [
+          "[managementGroup().id]"
+        ],
+        "permissions": [
+          {
+            "actions": [
+              "*/read",
+              "Microsoft.Network/networkWatchers/queryFlowLogStatus/action",
+              "Microsoft.Web/sites/config/list/Action",
+              "Microsoft.AppConfiguration/configurationStores/ListKeyValue/action",
+              "Microsoft.Storage/storageAccounts/queueServices/queues/read"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2020-08-01-preview",
+      "name": "[guid(managementGroup().id)]",
+      "properties": {
+        "principalId": "[parameters('principalId')]",
+        "roleDefinitionId": "[extensionResourceId(managementGroup().id, 'Microsoft.Authorization/roleDefinitions', guid(managementGroup().id))]",
+        "principalType": "ServicePrincipal"
+      },
+      "dependsOn": [
+        "[extensionResourceId(managementGroup().id, 'Microsoft.Authorization/roleDefinitions', guid(managementGroup().id))]"
+      ]
+    }
+  ]
+}
