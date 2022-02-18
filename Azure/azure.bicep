@@ -1,5 +1,7 @@
 param principalId string
 
+targetScope = 'subscription'
+
 resource iamrole 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' = {
   name: guid(subscription().subscriptionId)
   properties: {
