@@ -1,12 +1,12 @@
 param principalId string
 
 resource iamrole 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' = {
-  name: guid(subscription().subscriptionId)
+  name: guid(subscription().id)
   properties: {
     roleName: 'ARGOS Cloud Security - IAM role'
     description: 'This role allows ARGOS Cloud Security to perform all the READ actions it requires to monitor the configuration of your cloud subscriptions.'
     assignableScopes: [
-      subscription().subscriptionId
+      subscription().id
     ]
     permissions: [
       {
@@ -23,7 +23,7 @@ resource iamrole 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' = 
 }
 
 resource iamroleAssignment 'Microsoft.Authorization/roleAssignments@2020-08-01-preview' = {
-  name: guid(subscription().subscriptionId)
+  name: guid(subscription().id)
   properties: {
     principalId: principalId
     roleDefinitionId: iamrole.id
